@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Welcome Back</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container login-container">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-sign-in-alt"></i>
+            </div>
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Sign in to your account to continue</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+            
+            <div class="error" id="loginError">
+                <i class="fas fa-exclamation-circle"></i> Invalid username or password
+            </div>
+            
+            <button type="submit" class="btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+        </form>
+        
+        <div class="links">
+            Don't have an account? <a href="register.html">Create Account</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            document.getElementById('loginError').style.display = 'none';
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const existingUsers = JSON.parse(sessionStorage.getItem('users') || '[]');
+            
+            const user = existingUsers.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                const userIndex = existingUsers.indexOf(user);
+                sessionStorage.setItem('currentUser', userIndex);
+                
+                window.location.href = 'profile.html';
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
