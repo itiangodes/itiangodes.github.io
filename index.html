@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Jeed C. Godes | IT Graduate & Web Developer</title>
+    
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Portfolio of Christian Jeed C. Godes, Information Technology graduate with experience in web development, IT support, and system operations.">
+    <meta name="author" content="Christian Jeed C. Godes">
+    <meta property="og:title" content="Christian Jeed C. Godes | IT Graduate & Web Developer">
+    <meta property="og:description" content="BS in Information Technology graduate specializing in Web Development, Hardware Troubleshooting, and IT Operations.">
+    <meta property="og:type" content="website">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="color-dark.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Theme Switch Floating Control -->
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="toggle-switch" aria-label="Toggle Theme Mode">
+            <input type="checkbox" id="toggle-switch" onchange="toggleTheme()" checked>
+            <span class="slider">
+                <i class="fa-solid fa-moon moon-icon"></i>
+                <i class="fa-solid fa-sun sun-icon"></i>
+            </span>
+        </label>
+    </div>
+
+    <!-- Mobile Navigation Toggle -->
+    <button class="nav-toggler" id="nav-toggler" aria-label="Toggle navigation menu">
+        <span></span>
+    </button>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="aside" id="sidebar">
+            <div class="logo">
+                <a href="#home"><span></span></a>
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li><a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="#about" class="nav-link"><i class="fa-solid fa-user"></i>About Me</a></li>
+                    <li><a href="#skills" class="nav-link"><i class="fa-solid fa-code"></i>Skills</a></li>
+                    <li><a href="#experience" class="nav-link"><i class="fa-solid fa-briefcase"></i>Experience</a></li>
+                    <li><a href="#projects" class="nav-link"><i class="fa-solid fa-folder-open"></i>Projects</a></li>
+                    <li><a href="#educ" class="nav-link"><i class="fa-solid fa-graduation-cap"></i>Education</a></li>
+                    <li><a href="#objective" class="nav-link"><i class="fa-solid fa-bullseye"></i>Objective</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+                </ul>
+            </nav>
+            <div class="aside-footer">
+                <a href="Updated_resume.docx" download class="btn btn-sm btn-outline"><i class="fa-solid fa-download"></i> Resume</a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Hero Section -->
+            <section class="home section" id="home">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="home-info padd-15">
+                            <span class="badge">Open for Employment Opportunities</span>
+                            <h1 class="hello">Christian Jeed C. Godes</h1>
+                            <h2 class="my-profession">I am an <span class="typing"></span></h2>
+                            <p class="hero-desc">
+                                Bachelor of Science in Information Technology graduate from Cavite State University - CCAT Campus. Practical background in web development, hardware troubleshooting, technical support, and machine operations.
+                            </p>
+                            <div class="hero-cta">
+                                <a href="#experience" class="btn btn-primary">View Experience</a>
+                                <a href="Updated_resume.docx" download class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+                            </div>
+                            <div class="hero-contact-link">
+                                <a href="mailto:christiangodes27@gmail.com"><i class="fa-solid fa-envelope"></i> christiangodes27@gmail.com</a>
+                                <span class="sep">•</span>
+                                <a href="tel:09932638863"><i class="fa-solid fa-phone"></i> 09932638863</a>
+                            </div>
+                        </div>
+                        <div class="home-img padd-15">
+                            <div class="img-box">
+                                <img src="profile.jfif" alt="Christian Jeed C. Godes - Portfolio Picture">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Professional Summary Section -->
+            <section class="about section" id="about">
+                <div class="container">
+                    <div class="section-title padd-15">
+                        <h2>About Me</h2>
+                    </div>
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="about-text glass-card">
+                                <h3>Adaptable IT Specialist & Developer</h3>
+                                <p>
+                                    I am an Information Technology graduate who combines software skills with hands-on technical and operational experience. Having worked as an IT Technician Intern for municipal operations, as well as in industrial machine environments, I bring strong adaptability, workplace discipline, and practical problem-solving capabilities.
+                                </p>
+                                <p>
+                                    I am seeking an entry-level or junior role where I can utilize my expertise in web development (HTML, CSS, JavaScript), IT support, hardware maintenance, and office systems while contributing meaningfully to operational success.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Skills Section -->
+            <section class="skills-section section" id="skills">
+                <div class="container">
+                    <div class="section-title padd-15">
+                        <h2>Skills & Capabilities</h2>
+                    </div>
+                    <div class="row">
+                        
+                        <!-- Web Development -->
+                        <div class="skill-category-card padd-15">
+                            <div class="category-inner glass-card">
+                                <div class="category-header">
+                                    <i class="fa-solid fa-code category-icon"></i>
+                                    <h3>Web Development</h3>
+                                </div>
+                                <div class="skills-grid">
+                                    <div class="skill-badge"><i class="fa-brands fa-html5"></i> HTML</div>
+                                    <div class="skill-badge"><i class="fa-brands fa-css3-alt"></i> CSS</div>
+                                    <div class="skill-badge"><i class="fa-brands fa-js"></i> JavaScript</div>
+                                    <div class="skill-badge"><i class="fa-brands fa-java"></i> PHP</div>
+                                    <div class="skill-badge"><i class="fa-brands fa-python"></i> MySQL</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- IT Support & Hardware -->
+                        <div class="skill-category-card padd-15">
+                            <div class="category-inner glass-card">
+                                <div class="category-header">
+                                    <i class="fa-solid fa-screwdriver-wrench category-icon"></i>
+                                    <h3>IT Support & Hardware</h3>
+                                </div>
+                                <div class="skills-grid">
+                                    <div class="skill-badge"><i class="fa-solid fa-desktop"></i> Hardware Troubleshooting</div>
+                                    <div class="skill-badge"><i class="fa-solid fa-wrench"></i> Computer Repairs</div>
+                                    <div class="skill-badge"><i class="fa-solid fa-network-wired"></i> Basic Networking</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Productivity Tools -->
+                        <div class="skill-category-card padd-15">
+                            <div class="category-inner glass-card">
+                                <div class="category-header">
+                                    <i class="fa-solid fa-file-lines category-icon"></i>
+                                    <h3>Productivity Tools</h3>
+                                </div>
+                                <div class="skills-grid">
+                                    <div class="skill-badge"><i class="fa-solid fa-file-word"></i> MS Word</div>
+                                    <div class="skill-badge"><i class="fa-solid fa-file-excel"></i> MS Excel</div>
+                                    <div class="skill-badge"><i class="fa-solid fa-file-powerpoint"></i> MS PowerPoint</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Professional Traits -->
+                        <div class="skill-category-card padd-15">
+                            <div class="category-inner glass-card">
+                                <div class="category-header">
+                                    <i class="fa-solid fa-users category-icon"></i>
+                                    <h3>Professional Traits</h3>
+                                </div>
+                                <div class="skills-grid">
+                                    <div class="skill-badge"><i class="fa-solid fa-people-group"></i> Teamwork & Collaboration</div>
+                                    <div class="skill-badge"><i class="fa-solid fa-comments"></i> Communication Skills</div>
+                                    <div class="skill-badge"><i class="fa-solid fa-brain"></i> Adaptability</div>
+                                    <div class="skill-badge"><i class="fa-solid fa-clock"></i> Responsibility</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Experience Section -->
+            <section class="experience section" id="experience">
+                <div class="container">
+                    <div class="section-title padd-15">
+                        <h2>Work Experience</h2>
+                    </div>
+                    <div class="row">
+                        <div class="experience-timeline padd-15">
+                            
+                            <!-- Role 1 -->
+                            <div class="exp-card glass-card">
+                                <div class="exp-header">
+                                    <div>
+                                        <h3>IT Technician Intern</h3>
+                                        <h4>Municipality of Rosario | Rosario, Cavite</h4>
+                                    </div>
+                                    <span class="exp-date"><i class="fa-regular fa-calendar-days"></i> June 2023 – November 2023</span>
+                                </div>
+                                <ul class="exp-duties">
+                                    <li>Performed basic computer maintenance, hardware troubleshooting, and system software setups.</li>
+                                    <li>Assisted municipal office staff with IT technical support, peripheral configuration, and network checks.</li>
+                                    <li>Handled office documentation, records management, and IT assistance across various departments.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Role 2 -->
+                            <div class="exp-card glass-card">
+                                <div class="exp-header">
+                                    <div>
+                                        <h3>Machine Operator</h3>
+                                        <h4>JBC Corporation</h4>
+                                    </div>
+                                    <span class="exp-date"><i class="fa-regular fa-calendar-days"></i> March 2022 – September 2022</span>
+                                </div>
+                                <ul class="exp-duties">
+                                    <li>Monitored and operated specialized industrial production equipment following safety standards.</li>
+                                    <li>Ensured quality output, inspected components, and performed basic equipment adjustments.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Role 3 -->
+                            <div class="exp-card glass-card">
+                                <div class="exp-header">
+                                    <div>
+                                        <h3>Production Operator</h3>
+                                        <h4>House Technology Industries (HTI)</h4>
+                                    </div>
+                                    <span class="exp-date"><i class="fa-regular fa-calendar-days"></i> February 2020 – August 2020</span>
+                                </div>
+                                <ul class="exp-duties">
+                                    <li>Executed assembly line production operations in compliance with manufacturing specifications.</li>
+                                    <li>Collaborated with team members to meet daily target outputs and maintain high precision standards.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects section" id="projects">
+                <div class="container">
+                    <div class="section-title padd-15">
+                        <h2>Academic Projects</h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="project-filter-buttons padd-15">
+                            <button class="filter-btn active" data-filter="all">All Projects</button>
+                            <button class="filter-btn" data-filter="web">Web</button>
+                        </div>
+                    </div>
+
+                    <div class="row projects-grid">
+                        <div class="projects-item padd-15" data-category="web">
+                            <div class="projects-item-inner glass-card">
+                                <div class="projects-img">
+                                    <img src="Capture.PNG" alt="Web Interface Screenshot">
+                                </div>
+                                <div class="project-info">
+                                    <span class="project-tag">Web Development</span>
+                                    <h4>WKND Coffee Shop Online Website Ordering System</h4>
+                                    <p>A responsive coffee shop web application featuring online ordering, menu showcase (Best Sellers, Signature drinks), and dine-in customer navigation.</p>
+                                    <div class="project-tech">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JavaScript</span>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="WKND/index.html" target="_blank" class="btn btn-sm btn-primary">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Website
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="projects-item padd-15" data-category="java">
+                            <div class="projects-item-inner glass-card">
+                                <div class="projects-img">
+                                    <img src="basketballs.PNG" alt="Java Program Screenshot">
+                                </div>
+                                <div class="project-info">
+                                    <span class="project-tag">Capstone Project</span>
+                                    <h4>Interbarangay Basketball League Platform for Municipality of Tanza</h4>
+                                    <p>A comprehensive web portal providing real-time tournament tracking (match scores, team standings, player stats, schedules, dynamic bracketing) alongside tailored coach training programs for players.</p>
+                                    <div class="project-tech">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JavaScript</span>
+                                        <span>PHP</span>
+                                        <span>MySQL</span>
+                                    </div>
+                                    <div class="project-actions">
+                                        <a href="Basketball/index.html" target="_blank" class="btn btn-sm btn-primary">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Website
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="educ section" id="educ">
+                <div class="container">
+                    <div class="section-title padd-15">
+                        <h2>Education History</h2>
+                    </div>
+                    <div class="row">
+                        <div class="education-container padd-15">
+                            
+                            <div class="featured-educ-card glass-card">
+                                <div class="educ-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <div class="educ-details">
+                                    <span class="educ-date"><i class="fa fa-calendar"></i> September 2022 – 2026</span>
+                                    <h3>Bachelor of Science in Information Technology</h3>
+                                    <h4>Cavite State University – CCAT Campus</h4>
+                                    <p>Coursework focused on Web Development, Systems Analysis, Programming, and Computer Networking.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="sub-heading">Academic Path</h3>
+                            <div class="timeline shadow-dark">
+                                <div class="timeline-item">
+                                    <div class="circle-dot"></div>
+                                    <span class="timeline-date"><i class="fa fa-calendar"></i> June 2019 – March 2021</span>
+                                    <h4 class="timeline-title">Senior High School</h4>
+                                    <p class="timeline-text">Amaya School of Home Industries (Awarded With Honors)</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="circle-dot"></div>
+                                    <span class="timeline-date"><i class="fa fa-calendar"></i> June 2015 – March 2019</span>
+                                    <h4 class="timeline-title">Junior High School</h4>
+                                    <p class="timeline-text">Amaya School of Home Industries</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="circle-dot"></div>
+                                    <span class="timeline-date"><i class="fa fa-calendar"></i> June 2011 – March 2015</span>
+                                    <h4 class="timeline-title">Elementary Education</h4>
+                                    <p class="timeline-text">Bienvenido R. Fojas Memorial Elementary School</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Career Objective Section -->
+            <section class="objective section" id="objective">
+                <div class="container">
+                    <div class="section-title padd-15">
+                        <h2>Career Objective</h2>
+                    </div>
+                    <div class="row">
+                        <div class="objective-card padd-15">
+                            <div class="glass-card objective-inner">
+                                <i class="fa-solid fa-bullseye objective-icon"></i>
+                                <p>
+                                    Seeking an opportunity to apply and enhance my IT skills. I am eager to undergo professional training and take full responsibility for my work, leveraging my hands-on background and dedication to add real value to your organization.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact section" id="contact">
+                <div class="container">
+                    <div class="section-title padd-15">
+                        <h2>Contact Me</h2>
+                    </div>
+                    <div class="row">
+                        <div class="contact-box padd-15">
+                            <div class="glass-card contact-inner text-center">
+                                <h3>Get In Touch</h3>
+                                <p class="contact-desc">
+                                    Feel free to contact me directly for job opportunities, inquiries, or technical projects.
+                                </p>
+                                
+                                <div class="contact-info-list">
+                                    <div class="contact-info-item">
+                                        <i class="fa-solid fa-envelope"></i>
+                                        <span>christiangodes27@gmail.com</span>
+                                    </div>
+                                    <div class="contact-info-item">
+                                        <i class="fa-solid fa-phone"></i>
+                                        <span>09932638863</span>
+                                    </div>
+                                    <div class="contact-info-item">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <span>Tanza, Cavite, Philippines</span>
+                                    </div>
+                                </div>
+
+                                <div class="contact-actions">
+                                    <a href="mailto:christiangodes27@gmail.com" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Email Me</a>
+                                    <a href="Updated_resume.docx" download class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+
+        </main>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="script.js"></script>
+</body>
+</html>
