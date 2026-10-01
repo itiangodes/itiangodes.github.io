@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basketball League — Login</title>
+  <style>
+    :root{
+        --bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --card: rgba(255, 255, 255, 0.95);
+        --primary: #0033a0;
+        --secondary: #d9272d;
+        --accent: #ffc800;
+        --muted: #64748b;
+        --radius: 20px;
+        font-family: 'Montserrat', 'Inter', ui-sans-serif, system-ui;
+    }
+    *{box-sizing:border-box; margin:0; padding:0;}
+
+    html,body{
+        min-height: 100vh;
+        background: var(--bg);
+        color:#0f172a;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .wrap{
+        min-height: 100vh;
+        display:grid;
+        place-items:center;
+        padding:20px;
+        position: relative;
+    }
+
+    /* Animated background */
+    .basketball {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: var(--accent);
+        border-radius: 50%;
+        opacity: 0.1;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .basketball:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+    .basketball:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; width: 60px; height: 60px; }
+    .basketball:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; width: 40px; height: 40px; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .card {
+        background: var(--card);
+        padding: 40px 35px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        width:100%;
+        max-width:420px;
+        position: relative;
+        z-index: 10;
+        transition: transform 0.3s ease;
+        margin: 20px 0;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .logo {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .logo-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        box-shadow: 0 8px 20px rgba(0,51,160,0.3);
+        padding: 8px;
+    }
+
+    .logo-icon img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+
+    h2 {
+        color: var(--primary);
+        text-align: center;
+        font-weight: 700;
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        color: var(--muted);
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    form { display: flex; flex-direction: column; gap: 20px; }
+
+    label {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 6px;
+        display: block;
+        font-weight: 500;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"] {
+        width: 100%;
+        padding: 16px 45px 16px 16px;
+        border-radius: 12px;
+        border: 2px solid #e2e8f0;
+        background: #ffffff;
+        color: #0f172a;
+        font-size: 15px;
+        outline: none;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(255,200,0,0.2);
+        transform: translateY(-2px);
+    }
+
+    .input-group {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 16px;
+    }
+
+    .row { display: flex; gap: 12px; justify-content: space-between; align-items: center; margin: 10px 0; }
+    .checkbox-group { display: flex; align-items: center; gap: 8px; }
+
+    input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary);
+    }
+
+    .btn {
+        background: linear-gradient(135deg, var(--primary), #00267a);
+        color: white;
+        padding: 16px;
+        border-radius: 12px;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0,51,160,0.3);
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        margin-top: 10px;
+    }
+
+    .btn:hover {
+        background: linear-gradient(135deg, var(--secondary), #c02127);
+        box-shadow: 0 12px 25px rgba(217,39,45,0.4);
+        transform: translateY(-2px);
+    }
+
+    .secondary {
+        background: transparent;
+        border: 2px solid var(--secondary);
+        color: var(--secondary);
+        padding: 12px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .secondary:hover { background: var(--secondary); color: white; transform: translateY(-2px); }
+
+    .muted { color: var(--muted); font-size: 13px; }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .links { display: flex; gap: 10px; }
+
+    .copyright {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(226,232,240,0.5);
+        font-size: 12px;
+        color: var(--muted);
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: var(--card);
+        padding: 30px;
+        border-radius: var(--radius);
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--muted);
+    }
+
+    .close-btn:hover {
+        color: var(--secondary);
+    }
+
+    .success-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border: 1px solid #c3e6cb;
+        display: none;
+    }
+
+    .error-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 15px 0;
+        border: 1px solid #f5c6cb;
+        display: none;
+    }
+
+    @media (max-width: 480px) {
+        .card { padding: 30px 25px; }
+        .footer { flex-direction: column; gap: 15px; text-align: center; }
+        .row { flex-direction: column; align-items: flex-start; gap: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="basketball"></div>
+  <div class="basketball"></div>
+  <div class="basketball"></div>
+
+  <div class="wrap">
+    <div class="card" role="region" aria-label="Login form">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="sk_logo.svg.png" alt="SK Logo" style="width: 40px; height: 40px; border-radius: 50%;">
+        </div>
+        <h2>Inter Barangay Basketball League</h2>
+        <p class="subtitle">Sign in to manage your team, view schedules, and track statistics</p>
+      </div>
+
+      <form id="loginForm" method="POST" action="login.php" onsubmit="return validateLogin();">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" placeholder="Enter your username" required />
+          <div class="input-icon"><i class="fas fa-user"></i></div>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Enter your password" required />
+          <div class="input-icon"><i class="fas fa-lock"></i></div>
+        </div>
+
+        <div class="row">
+          <div class="checkbox-group">
+            <input id="remember" name="remember" type="checkbox" />
+            <label for="remember" class="muted">Remember me</label>
+          </div>
+          <button type="button" class="secondary" onclick="openForgotPasswordModal()">Forgot password?</button>
+        </div>
+
+        <button class="btn" type="submit">
+          <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>
+          Log in
+        </button>
+
+        <div class="footer">
+          <div class="muted">Don't have an account?</div>
+          <div class="links">
+            <button type="button" class="secondary" onclick="register()">Register</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="copyright">
+        © 2025 Municipality of Tanza, Cavite • Capstone Project
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeForgotPasswordModal()">&times;</span>
+      <h2 style="margin-bottom: 15px;">Reset Your Password</h2>
+      <p class="subtitle" style="text-align: left; margin-bottom: 20px;">
+        Enter your email address and we'll send you a link to reset your password.
+      </p>
+      
+      <div id="successMessage" class="success-message"></div>
+      <div id="errorMessage" class="error-message"></div>
+      
+      <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="Enter your email address" required />
+          <div class="input-icon"><i class="fas fa-envelope"></i></div>
+        </div>
+        
+        <button class="btn" type="submit" style="width: 100%; margin-top: 20px;">
+          <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+          Send Reset Link
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  // ===============================
+  // Remember Me Functionality
+  // ===============================
+  window.onload = function () {
+      const savedUsername = localStorage.getItem("rememberedUsername");
+      if (savedUsername) {
+          document.getElementById("username").value = savedUsername;
+          document.getElementById("remember").checked = true;
+      }
+  };
+
+  function validateLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const remember = document.getElementById('remember').checked;
+
+      if (!username || !password) {
+          alert('Please fill out both fields.');
+          return false;
+      }
+
+      if (remember) {
+          localStorage.setItem("rememberedUsername", username);
+      } else {
+          localStorage.removeItem("rememberedUsername");
+      }
+
+      return true;
+  }
+
+  // ===============================
+  // Forgot Password Functionality
+  // ===============================
+  function openForgotPasswordModal() {
+      document.getElementById('forgotPasswordModal').style.display = 'flex';
+      document.getElementById('successMessage').style.display = 'none';
+      document.getElementById('errorMessage').style.display = 'none';
+      document.getElementById('email').value = '';
+  }
+
+  function closeForgotPasswordModal() {
+      document.getElementById('forgotPasswordModal').style.display = 'none';
+  }
+
+  function handleForgotPassword(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value.trim();
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    // Hide previous messages
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+    
+    if (!email) {
+        errorMessage.textContent = 'Please enter your email address.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        errorMessage.textContent = 'Please enter a valid email address.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+    
+    // Show loading state
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i> Sending...';
+    submitBtn.disabled = true;
+    
+    // Send AJAX request to PHP (in the same login folder)
+    fetch('forgot_password.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'email=' + encodeURIComponent(email)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            let successHTML = '<strong>✅ Password reset link generated!</strong><br><br>';
+            
+            if (data.reset_link) {
+                successHTML += `
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <strong>Development Mode:</strong> Email sending may not work on localhost.<br>
+                        <strong>Use this link to reset your password:</strong><br>
+                        <a href="${data.reset_link}" style="color: #0033a0; word-break: break-all; display: inline-block; margin-top: 8px; text-decoration: underline;">
+                            ${data.reset_link}
+                        </a>
+                    </div>
+                    <button type="button" class="btn" onclick="window.location.href='${data.reset_link}'" style="margin: 10px 0;">
+                        <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i>
+                        Open Reset Page
+                    </button>
+                `;
+            }
+            
+            successHTML += `<small style="color: #666;">${data.email_status || ''}</small>`;
+            
+            successMessage.innerHTML = successHTML;
+            successMessage.style.display = 'block';
+            
+            // Clear the form
+            document.getElementById('forgotPasswordForm').reset();
+        } else {
+            errorMessage.textContent = data.message;
+            errorMessage.style.display = 'block';
+        }
+    })
+    .catch(error => {
+        errorMessage.textContent = 'Network error: ' + error.message;
+        errorMessage.style.display = 'block';
+    })
+    .finally(() => {
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    });
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+      const modal = document.getElementById('forgotPasswordModal');
+      if (event.target === modal) {
+          closeForgotPasswordModal();
+      }
+  }
+
+  function register() {
+      window.location.href = "../register/register.html";
+  }
+  </script>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

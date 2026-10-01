@@ -1,0 +1,23 @@
+/* Color Palette Variables for Theme Switching */
+:root {
+    --bg-main: #0a0f1d;
+    --bg-card: rgba(18, 26, 47, 0.75);
+    --bg-sidebar: #070a14;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --accent-teal: #00adb5;
+    --accent-teal-hover: #019ca2;
+    --border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Alternate Light Theme override rules */
+body.light-theme {
+    --bg-main: #f8fafc;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-sidebar: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-teal: #008b91;
+    --accent-teal-hover: #006b70;
+    --border-color: rgba(0, 0, 0, 0.08);
+}

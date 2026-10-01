@@ -1,0 +1,1603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basketball League — Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+        --bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --card: rgba(255, 255, 255, 0.95);
+        --primary:#0033a0;
+        --secondary:#d9272d;
+        --accent:#ffc800;
+        --muted:#64748b;
+        --radius:20px;
+        font-family: 'Montserrat', 'Inter', ui-sans-serif, system-ui;
+    }
+    *{box-sizing:border-box; margin:0; padding:0;}
+
+    html,body{
+        min-height: 100%;
+        background: var(--bg);
+        color:#0f172a;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .wrap{
+        min-height: 100vh;
+        display:grid;
+        place-items:center;
+        padding:20px;
+        position: relative;
+    }
+
+    .basketball {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: var(--accent);
+        border-radius: 50%;
+        opacity: 0.1;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .basketball:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .basketball:nth-child(2) {
+        top: 60%;
+        right: 15%;
+        animation-delay: 2s;
+        width: 60px;
+        height: 60px;
+    }
+
+    .basketball:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+        width: 40px;
+        height: 40px;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-30px) rotate(180deg); }
+    }
+
+    .card{
+        background: var(--card);
+        border-radius: var(--radius);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        padding:40px;
+        width:100%;
+        max-width:480px;
+        position: relative;
+        z-index: 10;
+        margin: 20px auto;
+    }
+
+    .logo{
+        text-align:center;
+        margin-bottom:24px;
+    }
+    .logo i{
+        font-size:48px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip:text;
+        background-clip:text;
+        -webkit-text-fill-color:transparent;
+    }
+    h1{
+        font-size:28px;
+        font-weight:700;
+        margin-bottom:8px;
+        color:var(--primary);
+        text-align:center;
+    }
+    .subtitle{
+        color:var(--muted);
+        text-align:center;
+        margin-bottom:32px;
+        font-size:14px;
+    }
+
+    .form-group{
+        margin-bottom:20px;
+        position: relative;
+    }
+    label{
+        display:block;
+        font-size:14px;
+        font-weight:600;
+        margin-bottom:8px;
+        color:#334155;
+    }
+    label .required{
+        color:var(--secondary);
+        margin-left:4px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="file"],
+    select{
+        width:100%;
+        padding:12px 16px;
+        border:2px solid #e2e8f0;
+        border-radius:12px;
+        font-size:14px;
+        transition: all 0.3s ease;
+        background: white;
+    }
+    input:focus,
+    select:focus{
+        outline:none;
+        border-color:var(--primary);
+        box-shadow: 0 0 0 3px rgba(0, 51, 160, 0.1);
+    }
+
+    /* Password strength indicator */
+    .password-strength {
+        margin-top: 8px;
+        height: 6px;
+        border-radius: 3px;
+        background: #e2e8f0;
+        overflow: hidden;
+    }
+    
+    .password-strength-bar {
+        height: 100%;
+        width: 0;
+        transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    
+    .password-strength-text {
+        font-size: 12px;
+        margin-top: 4px;
+        color: var(--muted);
+    }
+
+    /* Validation states */
+    .form-group.valid input,
+    .form-group.valid select {
+        border-color: #10b981;
+    }
+    
+    .form-group.invalid input,
+    .form-group.invalid select {
+        border-color: var(--secondary);
+    }
+    
+    .validation-message {
+        font-size: 12px;
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .validation-message.valid {
+        color: #10b981;
+    }
+    
+    .validation-message.invalid {
+        color: var(--secondary);
+    }
+    
+    .validation-message i {
+        margin-right: 6px;
+    }
+
+    /* File input styling */
+    .file-upload-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        width: 100%;
+    }
+    .file-upload-wrapper input[type="file"] {
+        position: absolute;
+        left: -9999px;
+    }
+    .file-upload-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+        border: 2px dashed #e2e8f0;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: white;
+    }
+    
+    .file-upload-label.valid {
+        border-color: #10b981;
+    }
+    
+    .file-upload-label.invalid {
+        border-color: var(--secondary);
+    }
+    
+    .file-upload-label:hover {
+        border-color: var(--primary);
+        background: #f8fafc;
+    }
+    .file-upload-label i {
+        margin-right: 8px;
+        color: var(--primary);
+    }
+    .file-name {
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--muted);
+        font-style: italic;
+    }
+
+    /* Single Photo upload styles */
+    .photo-upload-section {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .photo-preview-container {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 16px;
+      border: 2px dashed #e2e8f0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .photo-preview-container:hover {
+      border-color: var(--primary);
+      background: #f8fafc;
+    }
+
+    .photo-preview-container.valid {
+      border-color: #10b981;
+    }
+
+    .photo-preview-container.invalid {
+      border-color: var(--secondary);
+    }
+
+    .photo-preview-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-preview-placeholder {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .photo-preview-placeholder i {
+      font-size: 48px;
+      margin-bottom: 12px;
+      display: block;
+      color: var(--primary);
+    }
+
+    .photo-requirements {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .photo-note {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .photo-note i {
+      margin-right: 4px;
+    }
+
+    @media (max-width: 480px) {
+      .photo-preview-container {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    .role-conditional {
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+    .role-conditional.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .info-box {
+        background: #eff6ff;
+        border-left: 4px solid var(--primary);
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        color: #1e40af;
+    }
+    .info-box i {
+        margin-right: 8px;
+    }
+
+    .two-col{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+    }
+    @media(max-width:600px){
+        .two-col{
+            grid-template-columns:1fr;
+        }
+    }
+
+    .btn{
+        width:100%;
+        padding:14px;
+        background: linear-gradient(135deg, var(--primary) 0%, #0047cc 100%);
+        color:#fff;
+        border:none;
+        border-radius:12px;
+        font-size:16px;
+        font-weight:600;
+        cursor:pointer;
+        transition: all 0.3s ease;
+        margin-top:8px;
+        position: relative;
+        overflow: hidden;
+    }
+    .btn:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 51, 160, 0.3);
+    }
+    .btn:active {
+        transform: translateY(0);
+    }
+    
+    .btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .btn-loading .btn-text {
+        visibility: hidden;
+        opacity: 0;
+    }
+    
+    .btn-loading::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        border: 2px solid transparent;
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: button-loading-spinner 1s ease infinite;
+    }
+    
+    @keyframes button-loading-spinner {
+        from { transform: rotate(0turn); }
+        to { transform: rotate(1turn); }
+    }
+
+    .footer-link{
+        text-align:center;
+        margin-top:24px;
+        font-size:14px;
+        color:var(--muted);
+    }
+    .footer-link a{
+        color:var(--primary);
+        text-decoration:none;
+        font-weight:600;
+        transition: color 0.3s ease;
+    }
+    .footer-link a:hover{
+        color:var(--secondary);
+    }
+
+    .copyright{
+        text-align:center;
+        margin-top:24px;
+        padding-top:20px;
+        border-top:1px solid #e2e8f0;
+        font-size:12px;
+        color:var(--muted);
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    /* Success message styles */
+    .success-message {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      animation: slideDown 0.3s ease;
+    }
+    
+    .success-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+    }
+    
+    .success-content i {
+      font-size: 20px;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="basketball"></div>
+  <div class="basketball"></div>
+  <div class="basketball"></div>
+
+  <div class="card">
+    <div class="logo">
+      <i class="fas fa-basketball-ball"></i>
+    </div>
+    <h1>Create Your Account</h1>
+    <p class="subtitle">Join the Basketball League Management System and start your journey</p>
+
+    <form id="registerForm" action="register.php" method="post" enctype="multipart/form-data">
+
+      <!-- Role Selection -->
+      <div class="form-group">
+        <label>I am a <span class="required">*</span></label>
+        <select id="roleSelect" name="role" required>
+          <option value="">Select role</option>
+          <option value="coach">Coach</option>
+          <option value="player">Player</option>
+          <option value="community">Community</option>
+        </select>
+        <div class="role-info" style="font-size: 12px; color: var(--muted); margin-top: 8px;">
+          <i class="fas fa-info-circle"></i>
+          <span id="roleInfoText">Community registrations are automatically approved. Coaches and Players require admin approval.</span>
+        </div>
+      </div>
+
+      <!-- Barangay -->
+      <div class="form-group">
+        <label>Barangay <span class="required">*</span></label>
+        <select name="barangay" required>
+          <option value="">Select barangay</option>
+          <option value="amaya1">Amaya I</option>
+          <option value="amaya2">Amaya II</option>
+          <option value="amaya3">Amaya III</option>
+          <option value="amaya4">Amaya IV</option>
+          <option value="amaya5">Amaya V</option>
+          <option value="amaya6">Amaya VI</option>
+          <option value="amaya7">Amaya VII</option>
+          <option value="amaya8">Amaya VIII</option>
+          <option value="amaya9">Amaya IX</option>
+          <option value="amaya10">Amaya X</option>
+          <option value="amaya11">Amaya XI</option>
+          <option value="amaya12">Amaya XII</option>
+          <option value="bagtas">Bagtas</option>
+          <option value="biga">Biga</option>
+          <option value="biwas">Biwas</option>
+          <option value="bucal">Bucal</option>
+          <option value="calibuyo">Calibuyo</option>
+          <option value="capipisa">Capipisa</option>
+          <option value="daang_amaya1">Daang Amaya I</option>
+          <option value="daang_amaya2">Daang Amaya II</option>
+          <option value="daang_amaya3">Daang Amaya III</option>
+          <option value="halayhay">Halayhay</option>
+          <option value="julugan1">Julugan I</option>
+          <option value="julugan2">Julugan II</option>
+          <option value="julugan3">Julugan III</option>
+          <option value="julugan4">Julugan IV</option>
+          <option value="julugan5">Julugan V</option>
+          <option value="julugan6">Julugan VI</option>
+          <option value="julugan7">Julugan VII</option>
+          <option value="julugan8">Julugan VIII</option>
+          <option value="mulawin">Mulawin</option>
+          <option value="paradahan1">Paradahan I</option>
+          <option value="paradahan2">Paradahan II</option>
+          <option value="poblacion1">Poblacion I</option>
+          <option value="poblacion2">Poblacion II</option>
+          <option value="poblacion3">Poblacion III</option>
+          <option value="poblacion4">Poblacion IV</option>
+          <option value="punta1">Punta I</option>
+          <option value="punta2">Punta II</option>
+          <option value="sahud_ulan">Sahud Ulan</option>
+          <option value="sanja_mayor">Sanja Mayor</option>
+          <option value="santol">Santol</option>
+          <option value="tanauan">Tanauan</option>
+          <option value="tres_cruses">Tres Cruses</option>
+        </select>
+      </div>
+
+      <!-- First Name & Last Name -->
+      <div class="two-col">
+        <div class="form-group" id="firstNameGroup">
+          <label>First Name <span class="required">*</span></label>
+          <input type="text" name="firstname" placeholder="Enter your first name" required />
+          <div class="validation-message"></div>
+        </div>
+        <div class="form-group" id="lastNameGroup">
+          <label>Last Name <span class="required">*</span></label>
+          <input type="text" name="lastname" placeholder="Enter your last name" required />
+          <div class="validation-message"></div>
+        </div>
+      </div>
+
+      <!-- Middle Name -->
+      <div class="form-group" id="middleNameGroup">
+        <label>Middle Name</label>
+        <input type="text" name="middlename" placeholder="Enter your middle name (optional)" />
+        <div class="validation-message"></div>
+      </div>
+
+      <!-- Gender & Birthday -->
+      <div class="two-col">
+        <div class="form-group">
+          <label>Gender <span class="required">*</span></label>
+          <select name="gender" required>
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group" id="birthdayGroup">
+          <label>Birthday <span class="required">*</span></label>
+          <input type="date" name="birthday" required />
+          <div class="validation-message"></div>
+          <div class="age-requirements" style="font-size: 12px; color: var(--muted); margin-top: 8px;">
+            <i class="fas fa-info-circle"></i>
+            <span id="ageRequirementText">Age requirements: Players (15-30), Coaches (18+), Community (15+)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Upload Section (for Coach and Player) -->
+      <div id="documentSection" class="role-conditional">
+        <div class="info-box">
+          <i class="fas fa-info-circle"></i>
+          Please upload a Voter's Certificate or Barangay Clearance/Indigency that clearly shows your name, address, and age/birthdate. Accepted formats: JPG, PNG, PDF (Max 5MB)
+        </div>
+        <div class="form-group">
+          <label>Voter's Certificate or Barangay Clearance/Indigency <span class="required">*</span></label>
+          <div class="file-upload-wrapper">
+            <input type="file" id="document" name="document" accept=".jpg,.jpeg,.png,.pdf" />
+            <label for="document" class="file-upload-label" id="documentUploadLabel">
+              <i class="fas fa-upload"></i>
+              <span id="uploadText">Click to upload your document</span>
+            </label>
+          </div>
+          <div id="fileName" class="file-name"></div>
+        </div>
+      </div>
+
+      <!-- Single Photo Upload Section (for Coach and Player) -->
+      <div id="photoSection" class="role-conditional">
+        <div class="info-box">
+          <i class="fas fa-info-circle"></i>
+          Please upload your 1x1 ID photo with white background. Accepted formats: JPG, PNG (Max 2MB)
+        </div>
+        
+        <div class="photo-upload-section">
+          <div class="photo-preview-container" id="photoPreview">
+            <div class="photo-preview-placeholder">
+              <i class="fas fa-camera"></i>
+              Click to upload 1x1 photo
+            </div>
+          </div>
+          <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png" style="display: none;" />
+          <div class="photo-requirements">1x1 ID Photo • White background • JPG or PNG • Max 2MB</div>
+          <div id="photoFileName" class="file-name"></div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group" id="emailGroup">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" name="email" placeholder="you@example.com" required />
+        <div class="validation-message"></div>
+      </div>
+
+      <!-- Username -->
+      <div class="form-group" id="usernameGroup">
+        <label>Username <span class="required">*</span></label>
+        <input type="text" name="username" placeholder="Choose a username" required />
+        <div class="validation-message"></div>
+      </div>
+
+      <!-- Password & Confirm Password -->
+      <div class="two-col">
+        <div class="form-group" id="passwordGroup">
+          <label>Password <span class="required">*</span></label>
+          <input type="password" name="password" placeholder="Enter your password" required />
+          <div class="password-strength">
+            <div class="password-strength-bar"></div>
+          </div>
+          <div class="password-strength-text"></div>
+        </div>
+        <div class="form-group" id="confirmPasswordGroup">
+          <label>Confirm Password <span class="required">*</span></label>
+          <input type="password" name="confirm_password" placeholder="Confirm password" required />
+          <div class="validation-message"></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">
+        <span class="btn-text">Register Account</span>
+      </button>
+    </form>
+
+    <div class="footer-link">
+      Already have an account? <a href="../login/login.html">Log in</a>
+    </div>
+
+    <div class="copyright">
+      © 2025 Municipality of Tanza, Cavite 
+    </div>
+  </div>
+</div>
+
+<script>
+  // Role-based conditional fields
+  const roleSelect = document.getElementById('roleSelect');
+  const documentSection = document.getElementById('documentSection');
+  const photoSection = document.getElementById('photoSection');
+  const documentInput = document.getElementById('document');
+  const documentUploadLabel = document.getElementById('documentUploadLabel');
+  const uploadText = document.getElementById('uploadText');
+  const fileName = document.getElementById('fileName');
+  const submitBtn = document.getElementById('submitBtn');
+
+  // Single photo upload elements
+  const photoInput = document.getElementById('photo');
+  const photoPreview = document.getElementById('photoPreview');
+  const photoFileName = document.getElementById('photoFileName');
+
+  // Form validation state
+  let formIsValid = false;
+  let usernameCheckTimeout = null;
+  let emailCheckTimeout = null;
+  let barangayCheckTimeout = null;
+  let isBarangayOccupied = false;
+
+  // Check for success message in URL parameters
+  window.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      const customMessage = urlParams.get('message');
+      if (customMessage) {
+        showSuccessMessage(decodeURIComponent(customMessage));
+      } else {
+        showSuccessMessage('Registration successful! Your account is pending approval.');
+      }
+    }
+    
+    // Check for errors in URL parameters
+    if (urlParams.get('error')) {
+      showErrorMessage(urlParams.get('error'));
+    }
+    
+    // Initialize texts
+    updateRoleInfoText();
+    updateAgeRequirementText();
+  });
+
+  // Update role information text when role changes
+  function updateRoleInfoText() {
+    const role = roleSelect.value;
+    const roleInfoText = document.getElementById('roleInfoText');
+    
+    if (role === 'community') {
+      roleInfoText.innerHTML = '<strong>Community registrations are automatically approved.</strong> You can login immediately after registration.';
+    } else if (role === 'coach' || role === 'player') {
+      roleInfoText.innerHTML = 'Coach and Player registrations require admin approval before you can login.';
+    } else {
+      roleInfoText.innerHTML = 'Community registrations are automatically approved. Coaches and Players require admin approval.';
+    }
+  }
+
+  // Update age requirement text when role changes
+  function updateAgeRequirementText() {
+    const role = roleSelect.value;
+    const ageRequirementText = document.getElementById('ageRequirementText');
+    
+    if (role === 'player') {
+      ageRequirementText.textContent = 'Age requirement: 15 to 30 years old';
+    } else if (role === 'coach') {
+      ageRequirementText.textContent = 'Age requirement: 18 years old and above';
+    } else if (role === 'community') {
+      ageRequirementText.textContent = 'Age requirement: 15 years old and above';
+    } else {
+      ageRequirementText.textContent = 'Age requirements: Players (15-30), Coaches (18+), Community (15+)';
+    }
+  }
+
+  // Success message function
+  function showSuccessMessage(message) {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-message';
+    
+    // Check if it's an approved registration (community)
+    const isApproved = message.includes('approved') || message.includes('can now login');
+    
+    if (isApproved) {
+      successDiv.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+    }
+    
+    successDiv.innerHTML = `
+      <div class="success-content">
+        <i class="fas ${isApproved ? 'fa-check-circle' : 'fa-clock'}"></i>
+        <span>${message}</span>
+      </div>
+    `;
+    
+    const form = document.getElementById('registerForm');
+    form.parentNode.insertBefore(successDiv, form);
+    
+    setTimeout(() => {
+      successDiv.remove();
+    }, 5000);
+  }
+
+  // Error message function
+  function showErrorMessage(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'coach-notification error';
+    errorDiv.style.cssText = `
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+      animation: slideDown 0.3s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    `;
+    
+    errorDiv.innerHTML = `
+      <i class="fas fa-exclamation-circle" style="font-size: 20px; margin-top: 2px;"></i>
+      <div style="flex: 1;">
+        <strong>Registration Error</strong>
+        <div style="margin-top: 8px; font-size: 14px;">${message}</div>
+      </div>
+      <button onclick="this.parentElement.remove()" 
+              style="background: none; border: none; font-size: 16px; cursor: pointer; color: inherit;">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+    
+    const form = document.getElementById('registerForm');
+    form.parentNode.insertBefore(errorDiv, form);
+    
+    setTimeout(() => {
+      if (errorDiv.parentElement) {
+        errorDiv.remove();
+      }
+    }, 8000);
+  }
+
+  // Coach notification function
+  function showCoachNotification(message, type = 'warning') {
+    // Remove any existing coach notifications
+    const existingNotifications = document.querySelectorAll('.coach-notification');
+    existingNotifications.forEach(notification => notification.remove());
+
+    const notification = document.createElement('div');
+    notification.className = `coach-notification ${type}`;
+    notification.style.cssText = `
+      background: ${type === 'warning' ? '#fff3cd' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+      border: 1px solid ${type === 'warning' ? '#ffeaa7' : type === 'error' ? '#f5c6cb' : '#bee5eb'};
+      color: ${type === 'warning' ? '#856404' : type === 'error' ? '#721c24' : '#0c5460'};
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: slideDown 0.3s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    `;
+    
+    const icon = type === 'warning' ? 'fa-exclamation-triangle' : 
+                 type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+    
+    notification.innerHTML = `
+      <i class="fas ${icon}" style="font-size: 20px; margin-top: 2px;"></i>
+      <div style="flex: 1;">
+        <strong>${type === 'warning' ? 'Important Notice' : type === 'error' ? 'Registration Blocked' : 'Information'}</strong>
+        <div style="margin-top: 8px; font-size: 14px; line-height: 1.4;">${message}</div>
+      </div>
+      <button onclick="this.parentElement.remove()" 
+              style="background: none; border: none; font-size: 16px; cursor: pointer; color: inherit;">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+    
+    // Insert after the subtitle
+    const subtitle = document.querySelector('.subtitle');
+    subtitle.parentNode.insertBefore(notification, subtitle.nextSibling);
+  }
+
+  // Enhanced document validation function
+  function validateDocumentUpload() {
+    const role = roleSelect.value;
+    
+    if (role === 'coach' || role === 'player') {
+      const hasDocument = documentInput.files.length > 0;
+      
+      // Visual feedback
+      if (hasDocument) {
+        documentUploadLabel.classList.add('valid');
+        documentUploadLabel.classList.remove('invalid');
+      } else {
+        documentUploadLabel.classList.add('invalid');
+        documentUploadLabel.classList.remove('valid');
+      }
+      
+      return hasDocument;
+    }
+    
+    return true; // Not required for community role
+  }
+
+  // Enhanced photo validation function
+  function validatePhotoUpload() {
+    const role = roleSelect.value;
+    
+    if (role === 'coach' || role === 'player') {
+      const hasPhoto = photoInput.files.length > 0;
+      
+      // Visual feedback
+      if (hasPhoto) {
+        photoPreview.classList.add('valid');
+        photoPreview.classList.remove('invalid');
+      } else {
+        photoPreview.classList.add('invalid');
+        photoPreview.classList.remove('valid');
+      }
+      
+      return hasPhoto;
+    }
+    
+    return true; // Not required for community role
+  }
+
+  // Check if barangay already has an approved coach
+  async function checkBarangayCoachAvailability(barangay) {
+    try {
+      const response = await fetch(`check_barangay_coach.php?barangay=${encodeURIComponent(barangay)}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error checking barangay coach availability:', error);
+      return { available: true, error: 'Network error - cannot check barangay availability' };
+    }
+  }
+
+  // Check and notify barangay availability for coaches
+  async function checkAndNotifyBarangayAvailability(barangay) {
+    if (!barangay) {
+      showCoachNotification('Please select your barangay to check coach availability.', 'info');
+      isBarangayOccupied = false;
+      updateSubmitButtonState();
+      return;
+    }
+
+    try {
+      const result = await checkBarangayCoachAvailability(barangay);
+      
+      if (!result.available) {
+        showCoachNotification(
+          `<strong>${result.message}</strong><br><br>
+          <strong style="color: #dc3545;">You cannot register as a coach for this barangay.</strong><br>
+          Please select a different barangay or choose a different role.`,
+          'error'
+        );
+        isBarangayOccupied = true;
+      } else {
+        showCoachNotification(
+          `✅ <strong>${result.message}</strong><br><br>
+          You can proceed with your coach registration for this barangay.`,
+          'info'
+        );
+        isBarangayOccupied = false;
+      }
+    } catch (error) {
+      console.error('Could not check barangay availability:', error);
+      showCoachNotification(
+        'Unable to verify barangay availability. Please proceed with registration.',
+        'warning'
+      );
+      isBarangayOccupied = false;
+    }
+    
+    updateSubmitButtonState();
+  }
+
+  // Update submit button state based on barangay occupation
+  function updateSubmitButtonState() {
+    const role = roleSelect.value;
+    const barangay = document.querySelector('select[name="barangay"]').value;
+    
+    if (role === 'coach' && barangay && isBarangayOccupied) {
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.6';
+      submitBtn.style.cursor = 'not-allowed';
+      submitBtn.title = 'This barangay already has an approved coach. Please select a different barangay or role.';
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+      submitBtn.title = '';
+    }
+  }
+
+  roleSelect.addEventListener('change', function() {
+    const role = this.value;
+
+    // Reset sections
+    documentSection.classList.remove('active');
+    photoSection.classList.remove('active');
+    documentUploadLabel.classList.remove('valid', 'invalid');
+    photoPreview.classList.remove('valid', 'invalid');
+
+    // Remove required attributes
+    documentInput.removeAttribute('required');
+
+    // Show/hide sections based on role
+    if (role === 'coach' || role === 'player') {
+      documentSection.classList.add('active');
+      photoSection.classList.add('active');
+      documentInput.setAttribute('required', 'required');
+      
+      // Validate document and photo if already selected
+      validateDocumentUpload();
+      validatePhotoUpload();
+    }
+    // For community, don't show document/photo sections
+
+    // Update role info text
+    updateRoleInfoText();
+
+    // Update age requirement text
+    updateAgeRequirementText();
+
+    // Validate birthday if already entered
+    const birthdayInput = document.querySelector('input[name="birthday"]');
+    const birthdayValue = birthdayInput.value;
+    if (birthdayValue) {
+      const messageElement = birthdayInput.parentElement.querySelector('.validation-message');
+      validateField(birthdayInput, validateBirthday, messageElement);
+    }
+
+    // Check barangay availability when switching to coach role
+    const barangay = document.querySelector('select[name="barangay"]').value;
+    if (role === 'coach') {
+      checkAndNotifyBarangayAvailability(barangay);
+    } else {
+      // Remove any coach notifications for non-coach roles
+      const notifications = document.querySelectorAll('.coach-notification');
+      notifications.forEach(notification => notification.remove());
+      isBarangayOccupied = false;
+      updateSubmitButtonState();
+    }
+  });
+
+  // File upload display
+  documentInput.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      const file = this.files[0];
+      const fileSize = (file.size / 1024 / 1024).toFixed(2);
+
+      if (fileSize > 5) {
+        showCoachNotification('File size exceeds 5MB. Please choose a smaller file.', 'error');
+        this.value = '';
+        fileName.textContent = '';
+        uploadText.textContent = 'Click to upload your document';
+        validateDocumentUpload();
+        return;
+      }
+
+      fileName.textContent = `Selected: ${file.name} (${fileSize} MB)`;
+      uploadText.textContent = 'Change file';
+      validateDocumentUpload();
+    }
+  });
+
+  // Single photo upload functionality
+  photoPreview.addEventListener('click', function() {
+    photoInput.click();
+  });
+
+  // Handle photo file selection
+  photoInput.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      const file = this.files[0];
+      const fileSize = (file.size / 1024 / 1024).toFixed(2);
+
+      if (fileSize > 2) {
+        showCoachNotification('1x1 photo size exceeds 2MB. Please choose a smaller photo.', 'error');
+        this.value = '';
+        photoFileName.textContent = '';
+        photoPreview.innerHTML = '<div class="photo-preview-placeholder"><i class="fas fa-camera"></i>Click to upload 1x1 photo</div>';
+        validatePhotoUpload();
+        return;
+      }
+
+      // Validate image type
+      if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
+        showCoachNotification('Please upload only JPG or PNG images for your 1x1 photo.', 'error');
+        this.value = '';
+        photoFileName.textContent = '';
+        photoPreview.innerHTML = '<div class="photo-preview-placeholder"><i class="fas fa-camera"></i>Click to upload 1x1 photo</div>';
+        validatePhotoUpload();
+        return;
+      }
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        photoPreview.innerHTML = `<img src="${e.target.result}" alt="1x1 photo preview">`;
+      };
+      reader.readAsDataURL(file);
+
+      photoFileName.textContent = `Selected: ${file.name} (${fileSize} MB)`;
+      validatePhotoUpload();
+    }
+  });
+
+  // Barangay selection handler
+  document.querySelector('select[name="barangay"]').addEventListener('change', function() {
+    const role = roleSelect.value;
+    const barangay = this.value;
+    
+    if (role === 'coach') {
+      checkAndNotifyBarangayAvailability(barangay);
+    } else {
+      // Remove any coach notifications when barangay is cleared or role is not coach
+      const notifications = document.querySelectorAll('.coach-notification');
+      notifications.forEach(notification => notification.remove());
+      isBarangayOccupied = false;
+      updateSubmitButtonState();
+    }
+  });
+
+  // Password strength indicator
+  const passwordInput = document.querySelector('input[name="password"]');
+  const strengthBar = document.querySelector('.password-strength-bar');
+  const strengthText = document.querySelector('.password-strength-text');
+
+  passwordInput.addEventListener('input', function() {
+    const password = this.value;
+    let strength = 0;
+    let feedback = '';
+
+    if (password.length >= 8) strength += 25;
+    if (/[a-z]/.test(password)) strength += 25;
+    if (/[A-Z]/.test(password)) strength += 25;
+    if (/[0-9]/.test(password)) strength += 15;
+    if (/[^A-Za-z0-9]/.test(password)) strength += 10;
+
+    strengthBar.style.width = `${strength}%`;
+    
+    if (strength < 40) {
+      strengthBar.style.backgroundColor = '#ef4444';
+      feedback = 'Weak password';
+    } else if (strength < 70) {
+      strengthBar.style.backgroundColor = '#f59e0b';
+      feedback = 'Medium password';
+    } else {
+      strengthBar.style.backgroundColor = '#10b981';
+      feedback = 'Strong password';
+    }
+    
+    strengthText.textContent = feedback;
+  });
+
+  // Form validation functions
+  function validateField(field, validationFn, messageElement) {
+    const value = field.value.trim();
+    const isValid = validationFn(value);
+    
+    if (isValid) {
+      field.parentElement.classList.add('valid');
+      field.parentElement.classList.remove('invalid');
+      messageElement.innerHTML = '<i class="fas fa-check-circle"></i> ' + (messageElement.dataset.validMessage || 'Looks good!');
+      messageElement.classList.add('valid');
+      messageElement.classList.remove('invalid');
+    } else {
+      field.parentElement.classList.add('invalid');
+      field.parentElement.classList.remove('valid');
+      messageElement.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + (messageElement.dataset.invalidMessage || 'Please check this field');
+      messageElement.classList.add('invalid');
+      messageElement.classList.remove('valid');
+    }
+    
+    return isValid;
+  }
+
+  function validateName(name) {
+    return name.length >= 2 && /^[a-zA-Z\s]+$/.test(name);
+  }
+
+  function validateOptionalName(name) {
+    return name === '' || validateName(name);
+  }
+
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function validateUsername(username) {
+    return username.length >= 3 && /^[a-zA-Z0-9_]+$/.test(username);
+  }
+
+  function validateBirthday(date) {
+    if (!date) return false;
+    
+    const birthDate = new Date(date);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        const adjustedAge = age - 1;
+        const role = roleSelect.value;
+        if (role === 'player') {
+            return adjustedAge >= 15 && adjustedAge <= 30;
+        } else if (role === 'coach') {
+            return adjustedAge >= 18;
+        } else if (role === 'community') {
+            return adjustedAge >= 15;
+        }
+    }
+    
+    const role = roleSelect.value;
+    if (role === 'player') {
+        return age >= 15 && age <= 30;
+    } else if (role === 'coach') {
+        return age >= 18;
+    } else if (role === 'community') {
+        return age >= 15;
+    }
+    
+    return true; // Default case
+  }
+
+  // Check if username is available
+  async function checkUsernameAvailability(username) {
+    try {
+      const response = await fetch(`check_username.php?username=${encodeURIComponent(username)}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error checking username:', error);
+      return { available: false, error: 'Network error - cannot check username availability' };
+    }
+  }
+
+  // Check if email is available
+  async function checkEmailAvailability(email) {
+    try {
+      const response = await fetch(`check_email.php?email=${encodeURIComponent(email)}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error checking email:', error);
+      return { available: false, error: 'Network error - cannot check email availability' };
+    }
+  }
+
+  // Real-time validation
+  document.querySelector('input[name="firstname"]').addEventListener('blur', function() {
+    const messageElement = this.parentElement.querySelector('.validation-message');
+    messageElement.dataset.invalidMessage = 'Please enter a valid first name (letters and spaces only)';
+    validateField(this, validateName, messageElement);
+  });
+
+  document.querySelector('input[name="lastname"]').addEventListener('blur', function() {
+    const messageElement = this.parentElement.querySelector('.validation-message');
+    messageElement.dataset.invalidMessage = 'Please enter a valid last name (letters and spaces only)';
+    validateField(this, validateName, messageElement);
+  });
+
+  document.querySelector('input[name="middlename"]').addEventListener('blur', function() {
+    const messageElement = this.parentElement.querySelector('.validation-message');
+    messageElement.dataset.invalidMessage = 'Please enter a valid middle name (letters and spaces only)';
+    validateField(this, validateOptionalName, messageElement);
+  });
+
+  // Enhanced email validation
+  const emailInput = document.querySelector('input[name="email"]');
+  const emailMessage = emailInput.parentElement.querySelector('.validation-message');
+
+  emailInput.addEventListener('input', function() {
+    const email = this.value.trim();
+    
+    if (emailCheckTimeout) {
+      clearTimeout(emailCheckTimeout);
+    }
+    
+    const isValidFormat = validateEmail(email);
+    
+    if (email.length === 0) {
+      emailInput.parentElement.classList.remove('valid', 'invalid');
+      emailMessage.innerHTML = '';
+      emailMessage.classList.remove('valid', 'invalid');
+      return;
+    }
+    
+    if (!isValidFormat) {
+      emailInput.parentElement.classList.add('invalid');
+      emailInput.parentElement.classList.remove('valid');
+      emailMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please enter a valid email address';
+      emailMessage.classList.add('invalid');
+      emailMessage.classList.remove('valid');
+      return;
+    }
+    
+    emailInput.parentElement.classList.remove('valid', 'invalid');
+    emailMessage.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking availability...';
+    emailMessage.classList.remove('valid', 'invalid');
+    
+    emailCheckTimeout = setTimeout(async () => {
+      try {
+        const result = await checkEmailAvailability(email);
+        
+        if (result.available) {
+          emailInput.parentElement.classList.add('valid');
+          emailInput.parentElement.classList.remove('invalid');
+          emailMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + (result.message || 'Email is available');
+          emailMessage.classList.add('valid');
+          emailMessage.classList.remove('invalid');
+        } else {
+          emailInput.parentElement.classList.add('invalid');
+          emailInput.parentElement.classList.remove('valid');
+          emailMessage.innerHTML = '<i class="fas fa-times-circle"></i> ' + (result.message || 'Email is already registered');
+          emailMessage.classList.add('invalid');
+          emailMessage.classList.remove('valid');
+        }
+      } catch (error) {
+        emailInput.parentElement.classList.add('valid');
+        emailInput.parentElement.classList.remove('invalid');
+        emailMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Email format valid (availability check failed)';
+        emailMessage.classList.add('valid');
+        emailMessage.classList.remove('invalid');
+      }
+    }, 500);
+  });
+
+  emailInput.addEventListener('blur', function() {
+    const email = this.value.trim();
+    
+    if (email.length === 0) {
+      emailMessage.dataset.invalidMessage = 'Please enter a valid email address';
+      validateField(this, validateEmail, emailMessage);
+    }
+  });
+
+  // Enhanced username validation
+  const usernameInput = document.querySelector('input[name="username"]');
+  const usernameMessage = usernameInput.parentElement.querySelector('.validation-message');
+
+  usernameInput.addEventListener('input', function() {
+    const username = this.value.trim();
+    
+    if (usernameCheckTimeout) {
+      clearTimeout(usernameCheckTimeout);
+    }
+    
+    const isValidFormat = validateUsername(username);
+    
+    if (username.length === 0) {
+      usernameInput.parentElement.classList.remove('valid', 'invalid');
+      usernameMessage.innerHTML = '';
+      usernameMessage.classList.remove('valid', 'invalid');
+      return;
+    }
+    
+    if (!isValidFormat) {
+      usernameInput.parentElement.classList.add('invalid');
+      usernameInput.parentElement.classList.remove('valid');
+      usernameMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Username must be at least 3 characters and contain only letters, numbers, and underscores';
+      usernameMessage.classList.add('invalid');
+      usernameMessage.classList.remove('valid');
+      return;
+    }
+    
+    usernameInput.parentElement.classList.remove('valid', 'invalid');
+    usernameMessage.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking availability...';
+    usernameMessage.classList.remove('valid', 'invalid');
+    
+    usernameCheckTimeout = setTimeout(async () => {
+      try {
+        const result = await checkUsernameAvailability(username);
+        
+        if (result.available) {
+          usernameInput.parentElement.classList.add('valid');
+          usernameInput.parentElement.classList.remove('invalid');
+          usernameMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + (result.message || 'Username is available');
+          usernameMessage.classList.add('valid');
+          usernameMessage.classList.remove('invalid');
+        } else {
+          usernameInput.parentElement.classList.add('invalid');
+          usernameInput.parentElement.classList.remove('valid');
+          usernameMessage.innerHTML = '<i class="fas fa-times-circle"></i> ' + (result.message || 'Username is already taken');
+          usernameMessage.classList.add('invalid');
+          usernameMessage.classList.remove('valid');
+        }
+      } catch (error) {
+        usernameInput.parentElement.classList.add('valid');
+        usernameInput.parentElement.classList.remove('invalid');
+        usernameMessage.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Username format valid (availability check failed)';
+        usernameMessage.classList.add('valid');
+        usernameMessage.classList.remove('invalid');
+      }
+    }, 500);
+  });
+
+  usernameInput.addEventListener('blur', function() {
+    const username = this.value.trim();
+    
+    if (username.length === 0) {
+      usernameMessage.dataset.invalidMessage = 'Username must be at least 3 characters and contain only letters, numbers, and underscores';
+      validateField(this, validateUsername, usernameMessage);
+    }
+  });
+
+  document.querySelector('input[name="birthday"]').addEventListener('blur', function() {
+    const messageElement = this.parentElement.querySelector('.validation-message');
+    const role = roleSelect.value;
+    
+    if (role === 'player') {
+        messageElement.dataset.invalidMessage = 'Players must be between 15 and 30 years old';
+    } else if (role === 'coach') {
+        messageElement.dataset.invalidMessage = 'Coaches must be at least 18 years old';
+    } else if (role === 'community') {
+        messageElement.dataset.invalidMessage = 'Community members must be at least 15 years old';
+    } else {
+        messageElement.dataset.invalidMessage = 'You must meet the age requirement for this role';
+    }
+    
+    validateField(this, validateBirthday, messageElement);
+  });
+
+  document.querySelector('input[name="confirm_password"]').addEventListener('blur', function() {
+    const password = document.querySelector('input[name="password"]').value;
+    const confirmPassword = this.value;
+    const messageElement = this.parentElement.querySelector('.validation-message');
+    messageElement.dataset.invalidMessage = 'Passwords do not match';
+    
+    const isValid = password === confirmPassword && password.length >= 8;
+    validateField(this, () => isValid, messageElement);
+  });
+
+  // Form validation
+  document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const role = roleSelect.value;
+    const barangay = document.querySelector('select[name="barangay"]').value;
+    
+    // STRICT VALIDATION: Check if coach is trying to register in occupied barangay
+    if (role === 'coach' && barangay) {
+      try {
+        const result = await checkBarangayCoachAvailability(barangay);
+        
+        if (!result.available) {
+          showCoachNotification(
+            `<strong>Registration Blocked</strong><br><br>
+            ${result.message}<br><br>
+            <strong>You cannot register as a coach for this barangay.</strong><br>
+            Please select a different barangay or choose a different role.`,
+            'error'
+          );
+          return; // Prevent form submission
+        }
+      } catch (error) {
+        console.error('Barangay availability check failed on submission:', error);
+        // Continue with registration if check fails
+      }
+    }
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('btn-loading');
+    
+    // Validate all fields
+    const firstname = document.querySelector('input[name="firstname"]');
+    const lastname = document.querySelector('input[name="lastname"]');
+    const middlename = document.querySelector('input[name="middlename"]');
+    const email = document.querySelector('input[name="email"]');
+    const username = document.querySelector('input[name="username"]');
+    const birthday = document.querySelector('input[name="birthday"]');
+    const password = document.querySelector('input[name="password"]');
+    const confirmPassword = document.querySelector('input[name="confirm_password"]');
+    
+    const firstnameValid = validateField(firstname, validateName, firstname.parentElement.querySelector('.validation-message'));
+    const lastnameValid = validateField(lastname, validateName, lastname.parentElement.querySelector('.validation-message'));
+    const middlenameValid = validateField(middlename, validateOptionalName, middlename.parentElement.querySelector('.validation-message'));
+    const emailValid = validateField(email, validateEmail, email.parentElement.querySelector('.validation-message'));
+    const usernameValid = validateField(username, validateUsername, username.parentElement.querySelector('.validation-message'));
+    const birthdayValid = validateField(birthday, validateBirthday, birthday.parentElement.querySelector('.validation-message'));
+    const passwordValid = password.value.length >= 8;
+    const confirmPasswordValid = password.value === confirmPassword.value;
+    const barangayValid = barangay.value !== '';
+    
+    // Enhanced document validation (only for coaches and players)
+    let documentValid = true;
+    if ((role === 'coach' || role === 'player')) {
+      documentValid = validateDocumentUpload();
+      
+      if (!documentValid) {
+        documentSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        documentSection.style.animation = 'shake 0.5s ease-in-out';
+        setTimeout(() => {
+          documentSection.style.animation = '';
+        }, 500);
+      }
+    }
+    
+    // Enhanced photo validation (only for coaches and players)
+    let photoValid = true;
+    if ((role === 'coach' || role === 'player')) {
+      photoValid = validatePhotoUpload();
+      
+      if (!photoValid) {
+        photoSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        photoSection.style.animation = 'shake 0.5s ease-in-out';
+        setTimeout(() => {
+          photoSection.style.animation = '';
+        }, 500);
+      }
+    }
+    
+    // Additional REAL-TIME check for username availability on form submission
+    let usernameAvailable = false;
+    const usernameValue = username.value.trim();
+    if (usernameValue) {
+      try {
+        const result = await checkUsernameAvailability(usernameValue);
+        usernameAvailable = result.available;
+        
+        if (!usernameAvailable) {
+          username.parentElement.classList.add('invalid');
+          username.parentElement.classList.remove('valid');
+          usernameMessage.innerHTML = '<i class="fas fa-times-circle"></i> ' + (result.message || 'Username is already taken');
+          usernameMessage.classList.add('invalid');
+          usernameMessage.classList.remove('valid');
+        } else {
+          usernameAvailable = true;
+        }
+      } catch (error) {
+        usernameAvailable = true;
+        console.error('Username availability check failed on submission:', error);
+      }
+    }
+    
+    // Additional REAL-TIME check for email availability on form submission
+    let emailAvailable = false;
+    const emailValue = email.value.trim();
+    if (emailValue) {
+      try {
+        const result = await checkEmailAvailability(emailValue);
+        emailAvailable = result.available;
+        
+        if (!emailAvailable) {
+          email.parentElement.classList.add('invalid');
+          email.parentElement.classList.remove('valid');
+          emailMessage.innerHTML = '<i class="fas fa-times-circle"></i> ' + (result.message || 'Email is already registered');
+          emailMessage.classList.add('invalid');
+          emailMessage.classList.remove('valid');
+        } else {
+          emailAvailable = true;
+        }
+      } catch (error) {
+        emailAvailable = true;
+        console.error('Email availability check failed on submission:', error);
+      }
+    }
+    
+    formIsValid = firstnameValid && lastnameValid && middlenameValid && emailValid && emailAvailable && 
+                  usernameValid && usernameAvailable && birthdayValid && barangayValid &&
+                  passwordValid && confirmPasswordValid && documentValid && photoValid;
+    
+    if (formIsValid) {
+      this.submit();
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('btn-loading');
+      
+      if (!documentValid) {
+        showCoachNotification('Please upload a Voter\'s Certificate or Barangay Clearance/Indigency.', 'error');
+      } else if (!photoValid) {
+        showCoachNotification('Please upload a 1x1 ID photo.', 'error');
+      } else if (!usernameAvailable) {
+        showCoachNotification('Username is already taken. Please choose a different username.', 'error');
+      } else if (!emailAvailable) {
+        showCoachNotification('Email is already registered. Please use a different email address.', 'error');
+      } else if (!barangayValid) {
+        showCoachNotification('Please select your barangay.', 'error');
+      } else if (!birthdayValid) {
+        const role = roleSelect.value;
+        let ageMessage = '';
+        if (role === 'player') {
+          ageMessage = 'Players must be between 15 and 30 years old.';
+        } else if (role === 'coach') {
+          ageMessage = 'Coaches must be at least 18 years old.';
+        } else if (role === 'community') {
+          ageMessage = 'Community members must be at least 15 years old.';
+        }
+        showCoachNotification(`Age requirement not met: ${ageMessage}`, 'error');
+      } else {
+        showCoachNotification('Please fix the errors in the form before submitting.', 'error');
+      }
+    }
+  });
+</script>
+</body>
+</html>
